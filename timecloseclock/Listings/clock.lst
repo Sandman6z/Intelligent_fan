@@ -1,0 +1,66 @@
+C51 COMPILER V9.60.0.0   CLOCK                                                             09/19/2019 23:08:46 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CLOCK
+OBJECT MODULE PLACED IN .\Objects\clock.obj
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE clock.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\clo
+                    -ck.lst) TABS(2) OBJECT(.\Objects\clock.obj)
+
+line level    source
+
+   1          #include <STC15F2K60S2.H>
+   2          #include <intrins.h>
+   3          
+   4          sbit relay = P0^0;
+   5          
+   6          void Delay1000ms()    //@11.0592MHz  
+   7          {
+   8   1        unsigned char i, j, k;
+   9   1      
+  10   1        _nop_();
+  11   1        _nop_();
+  12   1        i = 43;
+  13   1        j = 6;
+  14   1        k = 203;
+  15   1        do
+  16   1        {
+  17   2          do
+  18   2          {
+  19   3            while (--k);
+  20   3          } while (--j);
+  21   2        } while (--i);
+  22   1      }
+  23          
+  24          
+  25          void main()
+  26          {
+  27   1        int i = 1200,j = 20000;
+  28   1        
+  29   1        relay = 0;
+  30   1        while(i)
+  31   1        {
+  32   2          Delay1000ms();
+  33   2          i--;
+  34   2        }
+  35   1        
+  36   1        relay = 1;
+  37   1        while(j)
+  38   1        {
+  39   2          Delay1000ms();
+  40   2          j--;
+  41   2        }
+  42   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     58    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
